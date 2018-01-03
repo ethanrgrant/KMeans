@@ -294,3 +294,112 @@
 "0"
 #endif
 "cxx_return_type_deduction\n"
+"CXX_FEATURE:"
+#if (__GNUC__ * 100 + __GNUC_MINOR__) >= 404 && (__cplusplus >= 201103L || (defined(__GXX_EXPERIMENTAL_CXX0X__) && __GXX_EXPERIMENTAL_CXX0X__))
+"1"
+#else
+"0"
+#endif
+"cxx_right_angle_brackets\n"
+"CXX_FEATURE:"
+#if (__GNUC__ * 100 + __GNUC_MINOR__) >= 404 && (__cplusplus >= 201103L || (defined(__GXX_EXPERIMENTAL_CXX0X__) && __GXX_EXPERIMENTAL_CXX0X__))
+"1"
+#else
+"0"
+#endif
+"cxx_rvalue_references\n"
+"CXX_FEATURE:"
+#if (__GNUC__ * 100 + __GNUC_MINOR__) >= 404 && (__cplusplus >= 201103L || (defined(__GXX_EXPERIMENTAL_CXX0X__) && __GXX_EXPERIMENTAL_CXX0X__))
+"1"
+#else
+"0"
+#endif
+"cxx_sizeof_member\n"
+"CXX_FEATURE:"
+#if (__GNUC__ * 100 + __GNUC_MINOR__) >= 404 && (__cplusplus >= 201103L || (defined(__GXX_EXPERIMENTAL_CXX0X__) && __GXX_EXPERIMENTAL_CXX0X__))
+"1"
+#else
+"0"
+#endif
+"cxx_static_assert\n"
+"CXX_FEATURE:"
+#if (__GNUC__ * 100 + __GNUC_MINOR__) >= 404 && (__cplusplus >= 201103L || (defined(__GXX_EXPERIMENTAL_CXX0X__) && __GXX_EXPERIMENTAL_CXX0X__))
+"1"
+#else
+"0"
+#endif
+"cxx_strong_enums\n"
+"CXX_FEATURE:"
+#if (__GNUC__ * 100 + __GNUC_MINOR__) >= 404 && __cplusplus
+"1"
+#else
+"0"
+#endif
+"cxx_template_template_parameters\n"
+"CXX_FEATURE:"
+#if (__GNUC__ * 100 + __GNUC_MINOR__) >= 408 && __cplusplus >= 201103L
+"1"
+#else
+"0"
+#endif
+"cxx_thread_local\n"
+"CXX_FEATURE:"
+#if (__GNUC__ * 100 + __GNUC_MINOR__) >= 404 && (__cplusplus >= 201103L || (defined(__GXX_EXPERIMENTAL_CXX0X__) && __GXX_EXPERIMENTAL_CXX0X__))
+"1"
+#else
+"0"
+#endif
+"cxx_trailing_return_types\n"
+"CXX_FEATURE:"
+#if (__GNUC__ * 100 + __GNUC_MINOR__) >= 404 && (__cplusplus >= 201103L || (defined(__GXX_EXPERIMENTAL_CXX0X__) && __GXX_EXPERIMENTAL_CXX0X__))
+"1"
+#else
+"0"
+#endif
+"cxx_unicode_literals\n"
+"CXX_FEATURE:"
+#if (__GNUC__ * 100 + __GNUC_MINOR__) >= 404 && (__cplusplus >= 201103L || (defined(__GXX_EXPERIMENTAL_CXX0X__) && __GXX_EXPERIMENTAL_CXX0X__))
+"1"
+#else
+"0"
+#endif
+"cxx_uniform_initialization\n"
+"CXX_FEATURE:"
+#if (__GNUC__ * 100 + __GNUC_MINOR__) >= 406 && (__cplusplus >= 201103L || (defined(__GXX_EXPERIMENTAL_CXX0X__) && __GXX_EXPERIMENTAL_CXX0X__))
+"1"
+#else
+"0"
+#endif
+"cxx_unrestricted_unions\n"
+"CXX_FEATURE:"
+#if (__GNUC__ * 100 + __GNUC_MINOR__) >= 407 && __cplusplus >= 201103L
+"1"
+#else
+"0"
+#endif
+"cxx_user_literals\n"
+"CXX_FEATURE:"
+#if (__GNUC__ * 100 + __GNUC_MINOR__) >= 500 && __cplusplus >= 201402L
+"1"
+#else
+"0"
+#endif
+"cxx_variable_templates\n"
+"CXX_FEATURE:"
+#if (__GNUC__ * 100 + __GNUC_MINOR__) >= 404 && (__cplusplus >= 201103L || (defined(__GXX_EXPERIMENTAL_CXX0X__) && __GXX_EXPERIMENTAL_CXX0X__))
+"1"
+#else
+"0"
+#endif
+"cxx_variadic_macros\n"
+"CXX_FEATURE:"
+#if (__GNUC__ * 100 + __GNUC_MINOR__) >= 404 && (__cplusplus >= 201103L || (defined(__GXX_EXPERIMENTAL_CXX0X__) && __GXX_EXPERIMENTAL_CXX0X__))
+"1"
+#else
+"0"
+#endif
+"cxx_variadic_templates\n"
+
+};
+
+int main(int argc, char** argv) { (void)argv; return features[argc]; }

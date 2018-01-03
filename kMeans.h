@@ -12,7 +12,7 @@ public:
         : numClusters(numClusters), data(data), toWriteOutFile(toWriteOutFile){}
 
     bool doKMeans(){
-        writeOutFile(std::string("points.txt"));
+        writeOutFile(std::string("../output/points.txt"));
     }
 
 private:

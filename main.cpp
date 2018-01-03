@@ -9,12 +9,12 @@ void generateClusters(std::vector<Point>& pointsToCluster, int numClusters){
 
     // create vars for normal params
     int mean = 1;
-    int stdDev = 2;
+    int stdDev = 1;
     std::default_random_engine generator;
     for(int i = 0; i < numClusters; i++){
-        std::normal_distribution<double> distribution(mean++, stdDev++);
+        std::normal_distribution<double> distribution(mean, stdDev);
+        mean +=3;
         for(int j=0; j<300; j++){
-            double number = distribution(generator);
             Point thisPoint = Point(distribution(generator), distribution(generator));
             thisPoint.prettyPrint();
             pointsToCluster.push_back(thisPoint);

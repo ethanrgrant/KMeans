@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/cygdrive/c/Users/Ethan Grant/CLionProjects/K_Means/kMeans.cpp
+random
+-
+fstream
+-
+iostream
+-
+kMeans.h
+/cygdrive/c/Users/Ethan Grant/CLionProjects/K_Means/kMeans.h
+
+/cygdrive/c/Users/Ethan Grant/CLionProjects/K_Means/kMeans.h
+
+/cygdrive/c/Users/Ethan Grant/CLionProjects/K_Means/main.cpp
+iostream
+-
+random
+-
+point.h
+/cygdrive/c/Users/Ethan Grant/CLionProjects/K_Means/point.h
+kMeans.cpp
+/cygdrive/c/Users/Ethan Grant/CLionProjects/K_Means/kMeans.cpp
+
+/cygdrive/c/Users/Ethan Grant/CLionProjects/K_Means/point.cpp
+iostream
+-
+point.h
+/cygdrive/c/Users/Ethan Grant/CLionProjects/K_Means/point.h
+
+/cygdrive/c/Users/Ethan Grant/CLionProjects/K_Means/point.h
+

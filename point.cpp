@@ -10,8 +10,7 @@ void Point::prettyPrint() const {
 }
 
 void Point::prettyPrint(std::ostream& outFile) const {
-    std::cout << "Point(" << x << " , " << y << ")" << std::endl;
-    outFile << "Point(" << x << " , " << y << ")" << std::endl;
+    outFile << x << "  " << y << "  " << owningClass << std::endl;
 }
 
 
