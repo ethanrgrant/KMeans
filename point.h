@@ -23,7 +23,9 @@ public:
     }
 
     void changeOwnership(const int newClass);
-    bool updateMinDistance(const double newDistance);
+    bool updateMinDistance(Point& comparePoint);
+    double findDistance(Point& point);
+    std::tuple<double, double> getCoords();
     int getOwnership() const;
     double getMinDistance(Point) const;
     void prettyPrint(std::ostream& outFile) const;

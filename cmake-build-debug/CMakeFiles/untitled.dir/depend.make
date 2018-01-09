@@ -3,6 +3,7 @@
 
 CMakeFiles/untitled.dir/kMeans.cpp.o: ../kMeans.cpp
 CMakeFiles/untitled.dir/kMeans.cpp.o: ../kMeans.h
+CMakeFiles/untitled.dir/kMeans.cpp.o: ../point.h
 
 CMakeFiles/untitled.dir/main.cpp.o: ../kMeans.cpp
 CMakeFiles/untitled.dir/main.cpp.o: ../kMeans.h

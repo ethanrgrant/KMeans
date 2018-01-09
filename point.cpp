@@ -3,6 +3,8 @@
 //
 
 #include <iostream>
+#include <tuple>
+#include <cmath>
 #include "point.h"
 
 void Point::prettyPrint() const {
@@ -15,14 +17,26 @@ void Point::prettyPrint(std::ostream& outFile) const {
 
 
 // updates the min distance if this is a new min
-bool Point::updateMinDistance(const double newDistance){
+bool Point::updateMinDistance(Point& comparePoint){
+    double newDistance = findDistance(comparePoint);
+    // if this is a new min update distance and ownership
     if(newDistance < minDistance){
         minDistance = newDistance;
+        changeOwnership(comparePoint.getOwnership());
         return true;
     }
     else{
         return false;
     }
+}
+
+std::tuple<double, double> Point::getCoords(){
+    return std::make_tuple(x, y);
+};
+
+// euclidean distance
+double Point::findDistance(Point& point){
+    return sqrt(pow(x-point.x, 2)+pow(y-point.y, 2));
 }
 // returns the distance from one point to another.
 double Point::getMinDistance(Point) const {

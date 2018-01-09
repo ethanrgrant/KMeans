@@ -17,6 +17,8 @@ kMeans.h
 /cygdrive/c/Users/Ethan Grant/CLionProjects/K_Means/kMeans.h
 
 /cygdrive/c/Users/Ethan Grant/CLionProjects/K_Means/kMeans.h
+point.h
+/cygdrive/c/Users/Ethan Grant/CLionProjects/K_Means/point.h
 
 /cygdrive/c/Users/Ethan Grant/CLionProjects/K_Means/main.cpp
 iostream
@@ -30,6 +32,10 @@ kMeans.cpp
 
 /cygdrive/c/Users/Ethan Grant/CLionProjects/K_Means/point.cpp
 iostream
+-
+tuple
+-
+cmath
 -
 point.h
 /cygdrive/c/Users/Ethan Grant/CLionProjects/K_Means/point.h
