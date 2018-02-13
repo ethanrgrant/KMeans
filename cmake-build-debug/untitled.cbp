@@ -80,6 +80,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/cygdrive/c/Users/Ethan Grant/CLionProjects/K_Means/cluster.cpp">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/Ethan Grant/CLionProjects/K_Means/cluster.h">
+			<Option target="untitled"/>
+		</Unit>
 		<Unit filename="/cygdrive/c/Users/Ethan Grant/CLionProjects/K_Means/kMeans.cpp">
 			<Option target="untitled"/>
 		</Unit>

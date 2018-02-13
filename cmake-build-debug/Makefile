@@ -123,6 +123,33 @@ untitled/fast:
 	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/build
 .PHONY : untitled/fast
 
+cluster.o: cluster.cpp.o
+
+.PHONY : cluster.o
+
+# target to build an object file
+cluster.cpp.o:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/cluster.cpp.o
+.PHONY : cluster.cpp.o
+
+cluster.i: cluster.cpp.i
+
+.PHONY : cluster.i
+
+# target to preprocess a source file
+cluster.cpp.i:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/cluster.cpp.i
+.PHONY : cluster.cpp.i
+
+cluster.s: cluster.cpp.s
+
+.PHONY : cluster.s
+
+# target to generate assembly for a file
+cluster.cpp.s:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/cluster.cpp.s
+.PHONY : cluster.cpp.s
+
 kMeans.o: kMeans.cpp.o
 
 .PHONY : kMeans.o
@@ -213,6 +240,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... untitled"
+	@echo "... cluster.o"
+	@echo "... cluster.i"
+	@echo "... cluster.s"
 	@echo "... kMeans.o"
 	@echo "... kMeans.i"
 	@echo "... kMeans.s"

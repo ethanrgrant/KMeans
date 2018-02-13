@@ -6,6 +6,14 @@
 
 #IncludeRegexTransform: 
 
+/cygdrive/c/Users/Ethan Grant/CLionProjects/K_Means/cluster.cpp
+cluster.h
+/cygdrive/c/Users/Ethan Grant/CLionProjects/K_Means/cluster.h
+
+/cygdrive/c/Users/Ethan Grant/CLionProjects/K_Means/cluster.h
+vector
+-
+
 /cygdrive/c/Users/Ethan Grant/CLionProjects/K_Means/kMeans.cpp
 random
 -
@@ -19,6 +27,8 @@ kMeans.h
 /cygdrive/c/Users/Ethan Grant/CLionProjects/K_Means/kMeans.h
 point.h
 /cygdrive/c/Users/Ethan Grant/CLionProjects/K_Means/point.h
+algorithm
+-
 
 /cygdrive/c/Users/Ethan Grant/CLionProjects/K_Means/main.cpp
 iostream

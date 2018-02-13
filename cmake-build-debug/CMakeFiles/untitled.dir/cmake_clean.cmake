@@ -2,6 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/untitled.dir/main.cpp.o"
   "CMakeFiles/untitled.dir/point.cpp.o"
   "CMakeFiles/untitled.dir/kMeans.cpp.o"
+  "CMakeFiles/untitled.dir/cluster.cpp.o"
   "untitled.pdb"
   "untitled.exe"
   "libuntitled.dll.a"
