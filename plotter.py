@@ -9,13 +9,13 @@ def plot_graph(fileName):
 
     # uncategorized
     plt.scatter(xs, ys)
-    plt.show()
     plt.savefig("output/uncategorized_plot.png")
+    plt.show()
 
     # with labels
     plt.scatter(xs, ys, c=colors, cmap=pylab.cm.cool)
-    plt.show()
     plt.savefig("output/categorized_plot.png")
+    plt.show()
 
 def main():
     plot_graph("output/points.txt")

@@ -24,12 +24,12 @@ namespace home {
         }
 
         std::tuple<double, double> Point::getCoords() {
-            return std::make_tuple(x, y);
+            return std::make_tuple(d_x, d_y);
         };
 
         // euclidean distance
         double Point::findDistance(Point &point) {
-            return sqrt(pow(x - point.x, 2) + pow(y - point.y, 2));
+            return sqrt(pow(d_x - point.d_x, 2) + pow(d_y - point.d_y, 2));
         }
 
         // returns the distance from one point to another.

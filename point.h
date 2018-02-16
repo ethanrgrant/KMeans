@@ -13,19 +13,9 @@ namespace home {
 
         public:
 
-            Point() {
-                d_owningClass = -1;
-                minDistance = INTMAX_MAX;
-                x = 0;
-                y = 0;
-            }
+            Point(double x, double y) : d_x(x), d_y(y), d_owningClass(-1),
+                                        d_minDist(INTMAX_MAX), d_totalPoints(0) { }
 
-            Point(double x, double y) {
-                this->x = x;
-                this->y = y;
-                d_owningClass = -1; // indicates unset
-                minDistance = INTMAX_MAX; // all distances will be less
-            }
 
             Point(int owningClass) : d_owningClass(owningClass) {}
 
@@ -48,26 +38,26 @@ namespace home {
 
 
         private:
-            double minDistance;
-            double x;
-            double y;
+            double d_minDist;
+            double d_x;
+            double d_y;
             int d_owningClass;
-            int totalPoints;
+            int d_totalPoints;
         };
 
         // allows points to be summed together to later be avgd
         inline
         void Point::sumPoint(Point &p) {
-            x += p.x;
-            y += p.y;
-            ++totalPoints;
+            d_x += p.d_x;
+            d_y += p.d_y;
+            ++d_totalPoints;
         }
 
         // used when a point represents a cluster
         inline
         void Point::average(){
-            x /= totalPoints;
-            y /= totalPoints;
+            d_x /= d_totalPoints;
+            d_y /= d_totalPoints;
         }
 
         // determines if two points are equal
@@ -78,12 +68,12 @@ namespace home {
 
         inline
         void Point::prettyPrint() const {
-            std::cout << "Point(" << x << " , " << y << ")" << std::endl;
+            std::cout << "Point(" << d_x << " , " << d_y << ")" << std::endl;
         }
 
         inline
         void Point::prettyPrint(std::ostream &outFile) const {
-            outFile << x << "  " << y << "  " << d_owningClass << std::endl;
+            outFile << d_x << "  " << d_y << "  " << d_owningClass << std::endl;
         }
 
     }
