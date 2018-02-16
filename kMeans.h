@@ -11,6 +11,7 @@
 namespace home {
 
     namespace kmeans {
+
         template<class T>
         class KMeans {
         public:
@@ -23,7 +24,7 @@ namespace home {
                     generateClusters();
                 chooseRandomStartingPoints();
                 // TODO some calculation about amt of movement to determine when k means is done
-                for (int i = 0; i < 10; i++) {
+                for (int i = 0; i < 100; i++) {
                     determineNewOwnership();
                     findNewMeans();
                 }
@@ -33,29 +34,23 @@ namespace home {
         private:
 
             void determineNewOwnership() {
-                for (auto meanPoint : currentMeans) {
-                    for (T point : data) {
+                for (auto& meanPoint : currentMeans) {
+                    for (T& point : data) {
                         point.updateMinDistance(meanPoint);
                     }
                 }
             }
 
             void findNewMeans() {
-                std::vector<T> newMeans = {};
-                // create new vector of means
-                typename std::vector<T>::iterator it;
+                std::vector<Point> newMeans;
+                for(int i = 0; i< numClusters; i++){
+                    newMeans.push_back(Point(i));
+                }
                 for (T& point: data) {
-                    // T must have way to compare ownership between itself and another class
-                     it = std::find_if(currentMeans.begin(), currentMeans.end(),
-                                       );
-                    if (it == currentMeans.end()) {
-                        newMeans.push_back(point);
-                    } else {
-                        it->sumPoint(point);
-                    }
+                    newMeans[point.getOwnership()].sumPoint(point);
                 }
                 for (auto &point: newMeans) {
-                    point.average(data.size());
+                    point.average();
                 }
                 currentMeans = newMeans;
             }
@@ -68,6 +63,7 @@ namespace home {
                 for (auto &point : data) {
                     point.prettyPrint(outFile);
                 }
+                outFile.close();
             }
 
             // points = a vector to be filled with chosen starting points
@@ -80,7 +76,7 @@ namespace home {
                     // copy value and then update ownership. This will hold each mean as it moves
                     Point newMean = data[dis(generator)];
                     newMean.changeOwnership(i);
-                    currentMeans.push_back(data[dis(generator)]);
+                    currentMeans.push_back(newMean);
                 }
             }
 

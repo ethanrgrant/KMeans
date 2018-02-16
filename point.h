@@ -14,62 +14,77 @@ namespace home {
         public:
 
             Point() {
-                owningClass = -1;
+                d_owningClass = -1;
                 minDistance = INTMAX_MAX;
+                x = 0;
+                y = 0;
             }
 
             Point(double x, double y) {
                 this->x = x;
                 this->y = y;
-                owningClass = -1; // indicates unset
+                d_owningClass = -1; // indicates unset
                 minDistance = INTMAX_MAX; // all distances will be less
             }
 
+            Point(int owningClass) : d_owningClass(owningClass) {}
+
+            // mutators
             void changeOwnership(const int newClass);
-
             bool updateMinDistance(Point &comparePoint);
+            void sumPoint(Point& p);
+            void average();
 
+            // accessors
             double findDistance(Point &point);
-
-            std::tuple<double, double> getCoords();
-
             int getOwnership() const;
-
+            std::tuple<double, double> getCoords();
             double getMinDistance(Point) const;
 
+            // output
             void prettyPrint(std::ostream &outFile) const;
-
             void prettyPrint() const;
-
-            // allows points to be summed together to later be avgd
-            inline
-            void sumPoint(Point &p) {
-                x += p.x;
-                y += p.y;
-            }
-
-            // used when a point represents a cluster
-            inline
-            void average(int num){
-                x /= num;
-                y /= num;
-            }
-
-            // determines if two points are equal
-            inline
-            static bool sameOwnership(Point otherPoint){
-                return (otherPoint.getOwnership() == owningClass);
-            }
+            bool sameOwnership(Point& otherPoint);
 
 
         private:
             double minDistance;
             double x;
             double y;
-            int owningClass;
+            int d_owningClass;
+            int totalPoints;
         };
 
+        // allows points to be summed together to later be avgd
+        inline
+        void Point::sumPoint(Point &p) {
+            x += p.x;
+            y += p.y;
+            ++totalPoints;
+        }
 
+        // used when a point represents a cluster
+        inline
+        void Point::average(){
+            x /= totalPoints;
+            y /= totalPoints;
+        }
+
+        // determines if two points are equal
+        inline
+        bool Point::sameOwnership(Point& otherPoint){
+            return (otherPoint.getOwnership() == d_owningClass);
+        }
+
+        inline
+        void Point::prettyPrint() const {
+            std::cout << "Point(" << x << " , " << y << ")" << std::endl;
+        }
+
+        inline
+        void Point::prettyPrint(std::ostream &outFile) const {
+            outFile << x << "  " << y << "  " << d_owningClass << std::endl;
+        }
 
     }
 }

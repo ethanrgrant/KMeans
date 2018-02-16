@@ -9,17 +9,9 @@
 namespace home {
 
     namespace kmeans {
-        void Point::prettyPrint() const {
-            std::cout << "Point(" << x << " , " << y << ")" << std::endl;
-        }
 
-        void Point::prettyPrint(std::ostream &outFile) const {
-            outFile << x << "  " << y << "  " << owningClass << std::endl;
-        }
-
-
-// updates the min distance if this is a new min
-        bool Point::updateMinDistance(Point &comparePoint) {
+        // updates the min distance if this is a new min
+        bool Point::updateMinDistance(Point& comparePoint) {
             double newDistance = findDistance(comparePoint);
             // if this is a new min update distance and ownership
             if (newDistance < minDistance) {
@@ -47,11 +39,11 @@ namespace home {
 
         // changes ownership of Point
         void Point::changeOwnership(int newClass) {
-            owningClass = newClass;
+            d_owningClass = newClass;
         }
 
         int Point::getOwnership() const {
-            return owningClass;
+            return d_owningClass;
         }
 
     }

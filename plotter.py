@@ -1,19 +1,24 @@
 import matplotlib.pyplot as plt
-
+import pylab
 
 def plot_graph(fileName):
     with open(fileName) as infile:
         lines = infile.readlines()
-    toPlot = []
-    for line in lines:
-        toPlot.append(tuple(map(float, line.split(None))))
-    plt.scatter([point[0] for point in toPlot], [point[1] for point in toPlot])
-    plt.show()
-    plt.savefig("uncategorized_plot.png")
+    toPlot = [tuple(map(float, line.split(None))) for line in lines]
+    xs, ys, colors = zip(*toPlot)
 
+    # uncategorized
+    plt.scatter(xs, ys)
+    plt.show()
+    plt.savefig("output/uncategorized_plot.png")
+
+    # with labels
+    plt.scatter(xs, ys, c=colors, cmap=pylab.cm.cool)
+    plt.show()
+    plt.savefig("output/categorized_plot.png")
 
 def main():
-    plot_graph("cmake-build-debug/points.txt")
+    plot_graph("output/points.txt")
 
 if __name__=="__main__":
     main()
