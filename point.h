@@ -5,6 +5,10 @@
 #ifndef UNTITLED_POINT_H
 #define UNTITLED_POINT_H
 
+#include <tuple>
+#include <iostream>
+#include <cmath>
+
 namespace home {
 
     namespace kmeans {
@@ -21,12 +25,12 @@ namespace home {
 
             // mutators
             void changeOwnership(const int newClass);
-            bool updateMinDistance(Point &comparePoint);
+            bool updateMinDistance(const Point &comparePoint);
             void sumPoint(Point& p);
             void average();
 
             // accessors
-            double findDistance(Point &point);
+            double findDistance(const Point &point);
             int getOwnership() const;
             std::tuple<double, double> getCoords();
             double getMinDistance(Point) const;
@@ -74,6 +78,40 @@ namespace home {
         inline
         void Point::prettyPrint(std::ostream &outFile) const {
             outFile << d_x << "  " << d_y << "  " << d_owningClass << std::endl;
+        }
+
+
+        inline
+        std::tuple<double, double> Point::getCoords() {
+            return std::make_tuple(d_x, d_y);
+        };
+
+        // euclidean distance
+        inline
+        double Point::findDistance(const Point &point) {
+            return sqrt(pow(d_x - point.d_x, 2) + pow(d_y - point.d_y, 2));
+        }
+
+        // returns the distance from one point to another.
+        inline
+        double Point::getMinDistance(Point) const {
+            return d_minDist;
+        }
+
+        // changes ownership of Point
+        inline
+        void Point::changeOwnership(int newClass) {
+            d_owningClass = newClass;
+        }
+
+        inline
+        int Point::getOwnership() const {
+            return d_owningClass;
+        }
+
+        inline
+        Point& operator+=(Point& lhs, Point& rhs) {
+            lhs.sumPoint(rhs);
         }
 
     }

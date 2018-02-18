@@ -6,7 +6,10 @@
 #define UNTITLED_KMEANS_H
 
 #include "point.h"
+
 #include <algorithm>
+#include <ctime>
+#include <bits/unique_ptr.h>
 
 namespace home {
 
@@ -15,6 +18,7 @@ namespace home {
         template<class T>
         class KMeans {
         public:
+            typedef std::unique_ptr<std::vector<T>> PointsPtr;
             // constructor for k means if its going to generate points
             KMeans(int numClusters, bool toGenerate, bool toWriteOutFile)
                     : numClusters(numClusters), toGenerate(toGenerate), toWriteOutFile(toWriteOutFile) {}
@@ -24,7 +28,7 @@ namespace home {
                     generateClusters();
                 chooseRandomStartingPoints();
                 // TODO some calculation about amt of movement to determine when k means is done
-                for (int i = 0; i < 100; i++) {
+                for (int i = 0; i < 10; i++) {
                     determineNewOwnership();
                     findNewMeans();
                 }
@@ -34,33 +38,32 @@ namespace home {
         private:
 
             void determineNewOwnership() {
-                for (auto& meanPoint : currentMeans) {
-                    for (T& point : data) {
+                for (auto& meanPoint : *currentMeans) {
+                    for (T& point : *data) {
                         point.updateMinDistance(meanPoint);
                     }
                 }
             }
 
             void findNewMeans() {
-                std::vector<Point> newMeans;
+                currentMeans->clear();
                 for(int i = 0; i< numClusters; i++){
-                    newMeans.push_back(Point(i));
+                    currentMeans->push_back(Point(i));
                 }
-                for (T& point: data) {
-                    newMeans[point.getOwnership()].sumPoint(point);
+                for (T& point: *data) {
+                    currentMeans->at(point.getOwnership()) += point;
                 }
-                for (auto &point: newMeans) {
+                for (auto &point: *currentMeans) {
                     point.average();
                 }
-                currentMeans = newMeans;
             }
 
             // writes out file to given filename
-            bool writeOutFile(std::string fileName) {
+            bool writeOutFile(std::string fileName) const {
                 std::cout << "XXXXXXXXX \n \n \n writing file: \n \n \nXXXXXXXX" << fileName << std::endl;
                 std::ofstream outFile;
                 outFile.open(fileName);
-                for (auto &point : data) {
+                for (auto &point : *data) {
                     point.prettyPrint(outFile);
                 }
                 outFile.close();
@@ -68,23 +71,25 @@ namespace home {
 
             // points = a vector to be filled with chosen starting points
             void chooseRandomStartingPoints() {
-                // creates uniform distribution across numPoints
+                std::srand(std::time(NULL));
                 std::default_random_engine generator;
                 std::uniform_int_distribution<> dis(0, numPoints - 1);
                 // finds starting points
+                currentMeans =  PointsPtr(new std::vector<T>());
                 for (int i = 0; i < numClusters; i++) {
                     // copy value and then update ownership. This will hold each mean as it moves
-                    Point newMean = data[dis(generator)];
+                    Point newMean(data->at(dis(generator)));
                     newMean.changeOwnership(i);
-                    currentMeans.push_back(newMean);
+                    currentMeans->push_back(newMean);
                 }
             }
 
             // used to generate clusters using normal distribution
             void generateClusters() {
+                std::srand(std::time(NULL));
                 std::cout << "Generating Clusters" << std::endl;
                 numPoints = numClusters * pointsPerGenCluster;
-                std::vector<Point> *pointsToCluster = new std::vector<Point>();
+                data =  PointsPtr(new std::vector<T>());
                 // create vars for normal params
                 int mean = 1;
                 int stdDev = 1;
@@ -93,18 +98,15 @@ namespace home {
                     std::normal_distribution<double> distribution(mean, stdDev);
                     mean += 3;
                     for (int j = 0; j < pointsPerGenCluster; j++) {
-                        Point thisPoint = Point(distribution(generator), distribution(generator));
-                        thisPoint.prettyPrint();
-                        pointsToCluster->push_back(thisPoint);
+                        data->push_back(Point(distribution(generator), distribution(generator)));
                     }
                 }
-                data = *pointsToCluster;
             }
 
             bool toWriteOutFile;
             bool toGenerate;
-            std::vector<T> data;
-            std::vector<T> currentMeans; // vector of current means
+            PointsPtr data;
+            PointsPtr currentMeans; // vector of current means
             int numClusters;
             int numPoints;
             const int pointsPerGenCluster = 300;

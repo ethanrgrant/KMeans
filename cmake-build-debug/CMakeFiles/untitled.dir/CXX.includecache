@@ -29,6 +29,10 @@ point.h
 /cygdrive/c/Users/Ethan Grant/CLionProjects/K_Means/point.h
 algorithm
 -
+ctime
+-
+bits/unique_ptr.h
+-
 
 /cygdrive/c/Users/Ethan Grant/CLionProjects/K_Means/main.cpp
 iostream
@@ -41,14 +45,14 @@ kMeans.cpp
 /cygdrive/c/Users/Ethan Grant/CLionProjects/K_Means/kMeans.cpp
 
 /cygdrive/c/Users/Ethan Grant/CLionProjects/K_Means/point.cpp
-iostream
--
-tuple
--
-cmath
--
 point.h
 /cygdrive/c/Users/Ethan Grant/CLionProjects/K_Means/point.h
 
 /cygdrive/c/Users/Ethan Grant/CLionProjects/K_Means/point.h
+tuple
+-
+iostream
+-
+cmath
+-
 
