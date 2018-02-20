@@ -8,6 +8,7 @@
 #include <tuple>
 #include <iostream>
 #include <cmath>
+#include <fstream>
 
 namespace home {
 
@@ -32,12 +33,10 @@ namespace home {
             // accessors
             double findDistance(const Point &point);
             int getOwnership() const;
-            std::tuple<double, double> getCoords();
+            std::tuple<double, double> getCoords() const;
             double getMinDistance(Point) const;
 
             // output
-            void prettyPrint(std::ostream &outFile) const;
-            void prettyPrint() const;
             bool sameOwnership(Point& otherPoint);
 
 
@@ -48,6 +47,14 @@ namespace home {
             int d_owningClass;
             int d_totalPoints;
         };
+
+        inline
+        std::ofstream& operator<<(std::ofstream& outfile, const Point& point) {
+            std::tuple<double, double> coords = point.getCoords();
+            outfile << std::get<0>(coords) << "  " << std::get<1>(coords)
+                    << "  " << point.getOwnership() << std::endl;
+            return outfile;
+        }
 
         // allows points to be summed together to later be avgd
         inline
@@ -62,6 +69,7 @@ namespace home {
         void Point::average(){
             d_x /= d_totalPoints;
             d_y /= d_totalPoints;
+            d_totalPoints = 1;
         }
 
         // determines if two points are equal
@@ -71,18 +79,7 @@ namespace home {
         }
 
         inline
-        void Point::prettyPrint() const {
-            std::cout << "Point(" << d_x << " , " << d_y << ")" << std::endl;
-        }
-
-        inline
-        void Point::prettyPrint(std::ostream &outFile) const {
-            outFile << d_x << "  " << d_y << "  " << d_owningClass << std::endl;
-        }
-
-
-        inline
-        std::tuple<double, double> Point::getCoords() {
+        std::tuple<double, double> Point::getCoords() const {
             return std::make_tuple(d_x, d_y);
         };
 

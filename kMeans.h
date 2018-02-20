@@ -28,7 +28,7 @@ namespace home {
                     generateClusters();
                 chooseRandomStartingPoints();
                 // TODO some calculation about amt of movement to determine when k means is done
-                for (int i = 0; i < 10; i++) {
+                for (int i = 0; i < 100; i++) {
                     determineNewOwnership();
                     findNewMeans();
                 }
@@ -63,22 +63,25 @@ namespace home {
                 std::cout << "XXXXXXXXX \n \n \n writing file: \n \n \nXXXXXXXX" << fileName << std::endl;
                 std::ofstream outFile;
                 outFile.open(fileName);
-                for (auto &point : *data) {
-                    point.prettyPrint(outFile);
+                try {
+                    for (auto &point : *data) {
+                        outFile << point;
+                    }
                 }
-                outFile.close();
+                catch(std::exception& e) {
+                    outFile.close();
+                }
             }
 
             // points = a vector to be filled with chosen starting points
             void chooseRandomStartingPoints() {
-                std::srand(std::time(NULL));
-                std::default_random_engine generator;
+                std::default_random_engine engine(std::time(NULL));
                 std::uniform_int_distribution<> dis(0, numPoints - 1);
                 // finds starting points
                 currentMeans =  PointsPtr(new std::vector<T>());
                 for (int i = 0; i < numClusters; i++) {
                     // copy value and then update ownership. This will hold each mean as it moves
-                    Point newMean(data->at(dis(generator)));
+                    Point newMean(data->at(dis(engine)));
                     newMean.changeOwnership(i);
                     currentMeans->push_back(newMean);
                 }
@@ -86,19 +89,18 @@ namespace home {
 
             // used to generate clusters using normal distribution
             void generateClusters() {
-                std::srand(std::time(NULL));
                 std::cout << "Generating Clusters" << std::endl;
                 numPoints = numClusters * pointsPerGenCluster;
                 data =  PointsPtr(new std::vector<T>());
                 // create vars for normal params
                 int mean = 1;
                 int stdDev = 1;
-                std::default_random_engine generator;
+                std::default_random_engine engine(std::time(NULL));
                 for (int i = 0; i < numClusters; i++) {
-                    std::normal_distribution<double> distribution(mean, stdDev);
+                    std::normal_distribution<double> dis(mean, stdDev);
                     mean += 3;
                     for (int j = 0; j < pointsPerGenCluster; j++) {
-                        data->push_back(Point(distribution(generator), distribution(generator)));
+                        data->push_back(Point(dis(engine), dis(engine)));
                     }
                 }
             }
